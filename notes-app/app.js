@@ -1,7 +1,6 @@
-const validator = require( 'validator' );
+const chalk = require( 'chalk' );
 const notes = require( './notes.js' );
 
 console.log( notes( ) );
 
-console.log( validator.isEmail( 'myname@example.com' ) );
-console.log( validator.isURL( 'https://mead.io' ) );
+console.log( chalk.bold.green.inverse( 'Success!' ) );
