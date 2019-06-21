@@ -3,4 +3,6 @@ const notes = require( './notes.js' );
 
 console.log( notes( ) );
 
-console.log( chalk.bold.green.inverse( 'Success!' ) );
+aVariable = chalk.bold.green.inverse( 'Success!' )
+
+console.log( aVariable );
