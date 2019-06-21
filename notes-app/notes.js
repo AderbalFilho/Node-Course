@@ -24,6 +24,15 @@ const addNote = function ( title, body ) {
 
 }
 
+const removeNote = function ( title ) {
+    const notes = loadNotes( );
+    const notes = notes.map( function ( note ) {
+        return note.title !== title;
+    });
+    console.log( 'Note removed!' );
+
+}
+
 const saveNotes = function ( notes ) {
     const dataJSON = JSON.stringify( notes );
     fs.writeFileSync( 'notes.json', dataJSON );
