@@ -5,11 +5,21 @@ const url = 'https://api.darksky.net/forecast/9d1465c6f3bb7a6c71944bdd8548d026/3
 const geocodeUrl = 'https://api.darksky.net/forecast/9d1465c6f3bb7a6c71944bdd8548d026/37.8267,-122.4233?lang=pt';
 
 request( { url: url, json: true }, ( error, response ) => {
-    console.log( response.body.daily.data[0].summary + 'It is currently ' + response.body.currently.temperature + ' degrees out. There is a ' + response.body.currently.precipProbability + '% chance fo rain.' );
+    if ( error ) {
+        console.log( 'Unable to connect to weather service!' );
+    } else if ( response.body.error ) {
+        console.log( 'Unable to find location' );
+    } else {
+        console.log( response.body.daily.data[0].summary + 'It is currently ' + response.body.currently.temperature + ' degrees out. There is a ' + response.body.currently.precipProbability + '% chance fo rain.' );
+    }
 });
 
-// Geocoding
-// Address -> Lat/Long -> Weather
 request( { url: geocodeUrl, json: true }, ( error, response ) => {
-    console.log( 'Latitude: ' + response.body.features[0].center[1] + '. Longitude: ' + response.body.features[0].center[0] + '.' );
+    if ( error ) {
+        console.log( 'Unable to connect to location services!' );
+    } else if ( response.body.features.length === 0 ) {
+        console.log( 'Unable to find location. Try another search.' );
+    } else {
+        console.log( 'Latitude: ' + response.body.features[0].center[1] + '. Longitude: ' + response.body.features[0].center[0] + '.' );
+    }
 });
