@@ -42,7 +42,7 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'List the notes',
-    handler: ( ) => console.log( 'Listing out all notes!' )
+    handler: ( ) => notes.listNotes( )
 })
 
 // Create read command
