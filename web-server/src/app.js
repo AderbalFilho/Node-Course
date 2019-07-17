@@ -39,14 +39,33 @@ app.get( '/help', ( req, res ) => {
     });
 });
 
+app.get( '/products', ( req, res ) => {
+    if ( !req.query.search ) {
+        return res.send({
+            error: 'You must provide a search term'
+        });
+    }
+    console.log( req.query );
+    res.send({
+        products: []
+    });
+});
+
 app.get( '/weather', ( req, res ) => {
+    if ( !req.query.address ) {
+        return res.send({
+            error: 'You must provide an address!'
+        });
+    }
+    var address = req.query.address;
     res.send({
         forecast: 'New York. It is currently 37 degrees out. There is a 47% chance of rain.',
         location: 'New York',
         latitude: 47,
         longitude: -23,
         temperature: 37,
-        chanceRain: 47
+        chanceRain: 47,
+        address
     });
 });
 
